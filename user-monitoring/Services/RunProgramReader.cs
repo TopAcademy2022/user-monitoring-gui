@@ -4,6 +4,11 @@ namespace user_monitoring.Services
 {
     public class RunProgramReader : IRunProgramReader
     {
+        public string GetProcessNameByProgramName(string programName)
+        {
+            return String.Empty;
+        }
+
         public bool CheckRunProgram(string programName)
         {
             return false;
