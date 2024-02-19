@@ -14,12 +14,12 @@
 
         public string GetStatisticFilePath()
         {
-            return _statisticFilePath;
+            return this._statisticFilePath;
         }
 
         public Setting(string statisticFilePath)
         {
-            _statisticFilePath = statisticFilePath;
+            this._statisticFilePath = statisticFilePath;
         }
     }
 }
