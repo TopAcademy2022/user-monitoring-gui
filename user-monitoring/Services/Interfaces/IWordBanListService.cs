@@ -2,9 +2,9 @@
 
 namespace user_monitoring.Services.Interfaces
 {
-    public interface IProgramBanListService
+    public interface IWordBanListService
     {
-        public bool Save(ProgramBanList programBanList);
+        public bool Save(WordBanList wordBanList);
 
         public bool Load();
     }
