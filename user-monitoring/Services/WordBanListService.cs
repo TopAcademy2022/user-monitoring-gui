@@ -3,9 +3,9 @@ using user_monitoring.Services.Interfaces;
 
 namespace user_monitoring.Services
 {
-    public class ProgramBanListService : IProgramBanListService
+    public class WordBanListService : IWordBanListService
     {
-        public bool Save(ProgramBanList programBanList)
+        public bool Save(WordBanList wordBanList)
         {
             return false;
         }
