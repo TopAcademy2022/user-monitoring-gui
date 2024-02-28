@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using user_monitoring.Services.Interfaces;
 
@@ -18,12 +19,18 @@ namespace user_monitoring.Services
                     }
                 }
             }
-			
+
             return false;
         }
 
         public bool KillProgram(string programName)
         {
+            foreach (Process processByProgramName in Process.GetProcessesByName(programName))
+            {
+                processByProgramName.Kill();
+                return true;
+            }
+
             return false;
         }
     }
