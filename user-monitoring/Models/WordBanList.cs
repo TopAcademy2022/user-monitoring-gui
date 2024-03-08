@@ -16,7 +16,7 @@
 
         public void AddWord(string word)
         {
-
+            this._wordBanList.Add(word);
         }
 
         public void RemoveWord(string word)
