@@ -21,7 +21,7 @@
 
         public void RemoveProgram(string programName)
         {
-
+            this._programBanList.Remove(programName);
         }
     }
 }
