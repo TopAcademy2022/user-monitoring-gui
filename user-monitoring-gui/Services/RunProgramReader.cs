@@ -1,9 +1,7 @@
-﻿using System;
-using System.ComponentModel;
-using System.Diagnostics;
-using user_monitoring.Services.Interfaces;
+﻿using System.Diagnostics;
+using user_monitoring_gui.Services.Interfaces;
 
-namespace user_monitoring.Services
+namespace user_monitoring_gui.Services
 {
     public class RunProgramReader : IRunProgramReader
     {

@@ -1,7 +1,7 @@
-﻿using user_monitoring.Models;
-using user_monitoring.Services.Interfaces;
+﻿using user_monitoring_gui.Models;
+using user_monitoring_gui.Services.Interfaces;
 
-namespace user_monitoring.Services
+namespace user_monitoring_gui.Services
 {
     public class WordBanListService : IWordBanListService
     {
