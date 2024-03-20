@@ -1,4 +1,4 @@
-﻿namespace user_monitoring.Models
+﻿namespace user_monitoring_gui.Models
 {
     public class Setting
     {

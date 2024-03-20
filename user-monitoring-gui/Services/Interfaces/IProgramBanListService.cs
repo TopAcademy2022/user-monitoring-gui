@@ -1,6 +1,6 @@
-﻿using user_monitoring.Models;
+﻿using user_monitoring_gui.Models;
 
-namespace user_monitoring.Services.Interfaces
+namespace user_monitoring_gui.Services.Interfaces
 {
     public interface IProgramBanListService
     {
