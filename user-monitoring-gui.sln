@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "user-monitoring-gui", "user-monitoring-gui\user-monitoring-gui.csproj", "{22025384-0D7C-4253-9707-EADF5D28A84E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "user-monitoring-gui-tests", "Tests\user-monitoring-gui-tests\user-monitoring-gui-tests\user-monitoring-gui-tests.csproj", "{58340590-9B0D-4349-9988-683A60AA0295}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{22025384-0D7C-4253-9707-EADF5D28A84E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22025384-0D7C-4253-9707-EADF5D28A84E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22025384-0D7C-4253-9707-EADF5D28A84E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58340590-9B0D-4349-9988-683A60AA0295}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58340590-9B0D-4349-9988-683A60AA0295}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58340590-9B0D-4349-9988-683A60AA0295}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58340590-9B0D-4349-9988-683A60AA0295}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
