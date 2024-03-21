@@ -1,4 +1,4 @@
-﻿namespace user_monitoring.Services.Interfaces
+﻿namespace user_monitoring_gui.Services.Interfaces
 {
     public interface IKeyboardKeysReader
     {
