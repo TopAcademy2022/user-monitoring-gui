@@ -1,5 +1,5 @@
-﻿using user_monitoring.Models;
-using user_monitoring.Services;
+﻿using user_monitoring_gui.Models;
+using user_monitoring_gui.Services.Interfaces;
 
 Console.WriteLine("Hello, World!");
 
