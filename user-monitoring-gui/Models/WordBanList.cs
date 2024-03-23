@@ -1,4 +1,4 @@
-﻿namespace user_monitoring.Models
+﻿namespace user_monitoring_gui.Models
 {
     public class WordBanList
     {
@@ -9,7 +9,7 @@
             this._wordBanList = new List<string>();
         }
 
-        public List<string> GetProgramBanList()
+        public List<string> GetWordBanList()
         {
             return this._wordBanList;
         }
