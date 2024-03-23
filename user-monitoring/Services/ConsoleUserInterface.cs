@@ -72,7 +72,72 @@ namespace user_monitoring.Services
 
         public void PrintMenuProgramBanList()
         {
+            const int NUMBER_EXIT_SUBMENU_ELEMENT = 4;
+            int numberSubMenuElement = 0;
 
+            while (numberSubMenuElement != NUMBER_EXIT_SUBMENU_ELEMENT)
+            {
+                Console.WriteLine("***********************************************");
+                Console.WriteLine("***********************************************");
+                Console.WriteLine("\t====== Редактирование списка запрещенных программ ======\n");
+                Console.WriteLine("1. Добавить программу в список");
+                Console.WriteLine("2. Удалить программу из списка");
+                Console.WriteLine("3. Показать список запрещенных программ");
+                Console.WriteLine("4. Вернуться в предыдущее меню\n");
+                Console.WriteLine("***********************************************");
+
+                Console.Write("Выберите пункт подменю: ");
+                ConsoleKeyInfo userInputSymbol;
+
+                do
+                {
+                    userInputSymbol = Console.ReadKey(true);
+                }
+                while (userInputSymbol.Key < ConsoleKey.D0 || userInputSymbol.Key > ConsoleKey.D4);
+
+                numberSubMenuElement = Convert.ToInt32(userInputSymbol.KeyChar.ToString());
+
+                Console.Clear();
+
+                switch (numberSubMenuElement)
+                {
+                    case 1:
+                        AddProgramToBanList();
+                        break;
+
+                    case 2:
+                        RemoveProgramFromBanList();
+                        break;
+
+                    case 3:
+                        ShowBanList();
+                        break;
+                        
+                }
+            }
+        }
+
+        private void AddProgramToBanList()
+        {
+            Console.WriteLine("Введите название программы для добавления в список:");
+            string programName = Console.ReadLine();
+            // Реализация добавления программы в список запрещенных
+            Console.WriteLine($"Программа '{programName}' успешно добавлена в список запрещенных.");
+        }
+
+        private void RemoveProgramFromBanList()
+        {
+            Console.WriteLine("Введите название программы для удаления из списка:");
+            string programName = Console.ReadLine();
+            // Реализация удаления программы из списка запрещенных
+            Console.WriteLine($"Программа '{programName}' успешно удалена из списка запрещенных.");
+        }
+
+        private void ShowBanList()
+        {
+            // Реализация вывода списка запрещенных программ
+            Console.WriteLine("Список запрещенных программ:");
+            // Ваш код здесь
         }
 
         public void RunProgram()
