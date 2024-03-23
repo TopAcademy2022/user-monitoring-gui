@@ -9,7 +9,7 @@
             this._wordBanList = new List<string>();
         }
 
-        public List<string> GetProgramBanList()
+        public List<string> GetWordBanList()
         {
             return this._wordBanList;
         }

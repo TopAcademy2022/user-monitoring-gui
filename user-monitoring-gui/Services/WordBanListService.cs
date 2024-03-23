@@ -35,7 +35,7 @@ namespace user_monitoring_gui.Services.Interfaces
         {
             /* ! decoding incoming data into a byte array */
 
-            var bytes = wordBanList.GetProgramBanList().Select(i => Encoding.Default.GetBytes($"{i}\n")).ToArray(); 
+            var bytes = wordBanList.GetWordBanList().Select(i => Encoding.Default.GetBytes($"{i}\n")).ToArray(); 
 
             switch (dataStorageArea)
             {
