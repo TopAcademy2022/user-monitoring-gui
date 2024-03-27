@@ -6,6 +6,7 @@ namespace user_monitoring_gui.Services
 {
     public class ProgramBanListService:IProgramBanListService
     {
+
    private IServerRequest _serverReqwest;
 
         public ProgramBanListService(IServerRequest serverReqwest)
