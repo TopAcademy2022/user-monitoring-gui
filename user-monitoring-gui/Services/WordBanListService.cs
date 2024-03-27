@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using user_monitoring_gui.Models;
 using user_monitoring_gui.Models.Network;
@@ -14,7 +15,9 @@ namespace user_monitoring_gui.Services.Interfaces
     {
         /* ! interface IServerRequest variable initialization  */
 
-        private IServerRequest _serverReqwest; 
+        private IServerRequest _serverReqwest;
+
+
 
         /*!
         @brief  Designer
@@ -26,8 +29,8 @@ namespace user_monitoring_gui.Services.Interfaces
         }
 
         /*!
-        @brief Data storage
-        @param[in] wordBanList Data to be saved
+        @brief method for saving data
+        @param[in] wordBanList data to be saved
         @param[in] dataStorageArea Selecting a storage location option        
         @return returns the true when the data is successfully saved
         */
@@ -35,7 +38,7 @@ namespace user_monitoring_gui.Services.Interfaces
         {
             /* ! decoding incoming data into a byte array */
 
-            var bytes = wordBanList.GetWordBanList().Select(i => Encoding.Default.GetBytes($"{i}\n")).ToArray(); 
+            var bytes = wordBanList.GetWordBanList().Select(i => Encoding.Default.GetBytes($"{i}\n")).ToArray();
 
             switch (dataStorageArea)
             {
@@ -60,10 +63,47 @@ namespace user_monitoring_gui.Services.Interfaces
             return false;
         }
 
-        public bool Load()
+        /*!
+        @brief method for loading data        
+        @param[in] dataStorageArea Selecting a storage location option        
+        @return returns the true when the data is successfully loaded
+        */
+        public bool Load(WordBanList wordBanList, DataStorageArea dataStorageArea)
         {
+            
+
+            switch (dataStorageArea)
+            {
+                case DataStorageArea.FILE:                  
+
+                    FileInfo file = new FileInfo("WordBanList.txt");
+                    /*
+                     * - file exist verification
+                     */
+                    if (file.Exists )
+                    {
+                        List<string> lines = File.ReadAllLines("WordBanList.txt").ToList();
+
+                        foreach (var line in lines)
+                        {
+                            wordBanList.AddWord(line);
+                        }
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                case DataStorageArea.SERVER:                   
+
+                    var result = this._serverReqwest.LoadData(wordBanList.GetType()).GetData();
+
+                    wordBanList.AddWord(Encoding.Default.GetString(result));
+
+                    return true;
+            }
             return false;
         }
-
     }
 }

@@ -23,7 +23,7 @@ namespace user_monitoring_gui_tests
          * \ brief AddProgramTest method adds value to the list
          */
         [Fact]
-        public void AddProgramTest()
+        public void AddWordTest()
         {
             wordBanList.AddWord("Test1");
             wordBanList.AddWord("Test2");
@@ -38,7 +38,7 @@ namespace user_monitoring_gui_tests
          * \ brief RemoveProgramTest method for checking whether a value is removed from a list
          */
         [Fact]
-        public void RemoveProgramTest()
+        public void RemoveWordTest()
         {
             wordBanList.AddWord("Test1");
             wordBanList.AddWord("Test2");

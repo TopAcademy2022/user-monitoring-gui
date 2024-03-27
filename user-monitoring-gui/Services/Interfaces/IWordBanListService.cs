@@ -6,6 +6,6 @@ namespace user_monitoring_gui.Services.Interfaces
     {
         public bool Save(WordBanList wordBanList, DataStorageArea dataStorageArea);
 
-        public bool Load();
+        public bool Load(WordBanList wordBanList, DataStorageArea dataStorageArea);
     }
 }
