@@ -43,7 +43,7 @@ namespace user_monitoring_gui.Services
             {
                 Process process = allProcesses[i];
 
-                if (process.ProcessName == programName) 
+                if (process.ProcessName.ToLower() == programName.ToLower()) 
                 {
                     process.Kill();
 
