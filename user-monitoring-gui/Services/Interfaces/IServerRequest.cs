@@ -5,5 +5,7 @@ namespace user_monitoring_gui.Services.Interfaces
     public interface IServerRequest
     {
         public ServerResponse SendData(byte[] data);
+
+        public ServerResponse LoadData(Type loadedClass);
     }
 }
