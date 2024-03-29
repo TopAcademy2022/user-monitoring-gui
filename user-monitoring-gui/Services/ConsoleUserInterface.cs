@@ -1,15 +1,17 @@
-﻿using user_monitoring_gui.Models;
 using user_monitoring_gui.Services.Interfaces;
+using user_monitoring_gui.Models;
 
 namespace user_monitoring.Services
 {
     public class ConsoleUserInterface : IUserInterface
     {
+        private WordBanList _wordBanList;
         private Setting _setting;
 
-        public ConsoleUserInterface(Setting setting)
+        public ConsoleUserInterface(Setting setting, WordBanList wordBanList)
         {
             this._setting = setting;
+            this._wordBanList = wordBanList;
         }
 
         public void PrintMenu()
@@ -20,6 +22,7 @@ namespace user_monitoring.Services
 
             while (numberMenuElement != NUMBER_EXIT_MENU_ELEMENT)
             {
+                Console.Clear();
                 Console.WriteLine("***********************************************");
                 Console.WriteLine("***********************************************");
                 Console.WriteLine("\t====== Меню ======\n");
@@ -37,12 +40,9 @@ namespace user_monitoring.Services
                 do
                 {
                     userInputSymbol = Console.ReadKey(true);
-                }
-                while (userInputSymbol.Key < ConsoleKey.D0 || userInputSymbol.Key > ConsoleKey.D6);
+                } while (userInputSymbol.Key < ConsoleKey.D0 || userInputSymbol.Key > ConsoleKey.D6);
 
                 numberMenuElement = Convert.ToInt32(userInputSymbol.KeyChar.ToString());
-
-                Console.Clear();
 
                 switch (numberMenuElement)
                 {
@@ -131,6 +131,82 @@ namespace user_monitoring.Services
         public void PrintMenuWordBanList()
         {
 
+            const uint NUMBER_EXIT_MENU_ELEMENT = 4;
+            int numberMenuElement = 0;
+
+            while (numberMenuElement != NUMBER_EXIT_MENU_ELEMENT)
+            {
+                Console.Clear();
+                Console.WriteLine("***********************************************");
+                Console.WriteLine("***********************************************");
+                Console.WriteLine("\tМеню списка запрещенных слов\n");
+                Console.WriteLine("1. Добавить слово в список запрещенных");
+                Console.WriteLine("2. Удалить слово из списка запрещенных");
+                Console.WriteLine("3. Вернуться в главное меню");
+                Console.WriteLine("***********************************************");
+
+                Console.Write("Выберите пункт меню: ");
+                ConsoleKeyInfo userInputSymbol;
+
+                do
+                {
+                    userInputSymbol = Console.ReadKey(true);
+                } while (userInputSymbol.Key < ConsoleKey.D0 || userInputSymbol.Key > ConsoleKey.D3);
+
+                numberMenuElement = Convert.ToInt32(userInputSymbol.KeyChar.ToString());
+
+                switch (numberMenuElement)
+                {
+                    case 1:
+                        PrintAddWordToBanList();
+                        break;
+
+                    case 2:
+                        PrintRemoveWordFromBanList();
+                        break;
+
+                    case 3:
+                        PrintMenu();
+                        break;
+                }
+            }
+        }
+
+        public void PrintAddWordToBanList()
+        {
+            Console.WriteLine("Введите слово, которое нужно добавить в список запрещенных:");
+
+            string word = Console.ReadLine();
+            _wordBanList.AddWord(word);
+        }
+
+        public void PrintRemoveWordFromBanList()
+        {
+            Console.WriteLine("Введите слово, которое нужно удалить из списка запрещенных:");
+
+            string word = Console.ReadLine();
+            _wordBanList.RemoveWord(word);
+        }
+        public void PrintBanList()
+        {
+            List<string> banList = _wordBanList.GetWordBanList();
+
+            if (banList.Count == 0)
+            {
+                Console.WriteLine("\nСписок запрещенных слов пуст.\n");
+            }
+            else
+            {
+                Console.WriteLine("\nСписок запрещенных слов:");
+
+                foreach (string word in banList)
+                {
+                    Console.WriteLine(word);
+                }
+            }
+
+            Console.WriteLine("\nНажмите любую клавишу, чтобы продолжить...");
+            Console.ReadKey(true);
         }
 
         public void PrintMenuProgramBanList()

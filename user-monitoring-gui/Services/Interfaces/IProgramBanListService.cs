@@ -6,6 +6,6 @@ namespace user_monitoring_gui.Services.Interfaces
     {
         public bool Save(ProgramBanList programBanList);
 
-        public bool Load();
+        public bool Load (ProgramBanList programBanList, DataStorageArea dataStorageArea);
     }
 }
