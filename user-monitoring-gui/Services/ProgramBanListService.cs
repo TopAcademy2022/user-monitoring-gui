@@ -1,18 +1,18 @@
-﻿using System.Text;
-using user_monitoring_gui.Models;
+﻿using user_monitoring_gui.Models;
 using user_monitoring_gui.Services.Interfaces;
 
 namespace user_monitoring_gui.Services
 {
-    public class ProgramBanListService:IProgramBanListService
+    public class ProgramBanListService : IProgramBanListService
     {
 
-   private IServerRequest _serverReqwest;
-
+	private IServerRequest _serverReqwest;
+   
         public ProgramBanListService(IServerRequest serverReqwest)
         {
             this._serverReqwest = serverReqwest;
         }
+		
         public bool Save(ProgramBanList programBanList, DataStorageArea dataStorageArea)
         {
             /* ! decoding incoming data into a byte array */
@@ -41,8 +41,7 @@ namespace user_monitoring_gui.Services
 
             return false;
         }
-
-        public bool Load()
+   public bool Load()
         {
             return false;
         }
