@@ -1,8 +1,5 @@
-﻿using System.IO;
 using System.Text;
 using user_monitoring_gui.Models;
-using user_monitoring_gui.Models.Network;
-
 
 namespace user_monitoring_gui.Services.Interfaces
 {
@@ -14,15 +11,15 @@ namespace user_monitoring_gui.Services.Interfaces
     {
         /* ! interface IServerRequest variable initialization  */
 
-        private IServerRequest _serverReqwest; 
+        private IServerRequest _serverRequest;
 
         /*!
         @brief  Designer
         @param[in] IServerRequest serverReqwest Сlass instance data    
         */
-        public WordBanListService(IServerRequest serverReqwest)
+        public WordBanListService(IServerRequest serverRequest)
         {
-            this._serverReqwest = serverReqwest;
+            this._serverRequest = serverRequest;
         }
 
         /*!
@@ -52,18 +49,52 @@ namespace user_monitoring_gui.Services.Interfaces
                 case DataStorageArea.SERVER:
                     foreach (var item in bytes)
                     {
-                        this._serverReqwest.SendData(item);
+                        this._serverRequest.SendData(item);
                     }
                     return true;
             }
-
             return false;
         }
 
-        public bool Load()
+        /*!
+        @brief method for loading data        
+        @param[in] dataStorageArea Selecting a storage location option        
+        @return returns the true when the data is successfully loaded
+        */
+        public bool Load(WordBanList wordBanList, DataStorageArea dataStorageArea)
         {
+            switch (dataStorageArea)
+            {
+                case DataStorageArea.FILE:
+
+                    FileInfo file = new FileInfo("WordBanList.txt");
+                    /*
+                     * - file exist verification
+                     */
+                    if (file.Exists)
+                    {
+                        List<string> lines = File.ReadAllLines("WordBanList.txt").ToList();
+
+                        foreach (var line in lines)
+                        {
+                            wordBanList.AddWord(line);
+                        }
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                case DataStorageArea.SERVER:
+
+                    var result = this._serverRequest.LoadData(wordBanList.GetType()).GetData();
+
+                    wordBanList.AddWord(Encoding.Default.GetString(result));
+
+                    return true;
+            }
             return false;
         }
-
     }
 }
