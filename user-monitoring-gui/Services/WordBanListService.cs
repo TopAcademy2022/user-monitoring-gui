@@ -1,8 +1,10 @@
+<<<<<<< HEAD
+﻿using System.Text;
+=======
 ﻿using System.IO;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
+>>>>>>> parent of b2b2b5c (Implemented the LoadProgramBanList method. Closed #48)
 using user_monitoring_gui.Models;
-using user_monitoring_gui.Models.Network;
 
 
 namespace user_monitoring_gui.Services.Interfaces
@@ -15,9 +17,11 @@ namespace user_monitoring_gui.Services.Interfaces
     {
         /* ! interface IServerRequest variable initialization  */
 
-        private IServerRequest _serverReqwest;
-
-
+<<<<<<< HEAD
+        private IServerRequest _serverRequest;
+=======
+        private IServerRequest _serverReqwest; 
+>>>>>>> parent of b2b2b5c (Implemented the LoadProgramBanList method. Closed #48)
 
         /*!
         @brief  Designer
@@ -25,12 +29,12 @@ namespace user_monitoring_gui.Services.Interfaces
         */
         public WordBanListService(IServerRequest serverReqwest)
         {
-            this._serverReqwest = serverReqwest;
+            this._serverRequest = serverReqwest;
         }
 
         /*!
-        @brief method for saving data
-        @param[in] wordBanList data to be saved
+        @brief Data storage
+        @param[in] wordBanList Data to be saved
         @param[in] dataStorageArea Selecting a storage location option        
         @return returns the true when the data is successfully saved
         */
@@ -38,7 +42,7 @@ namespace user_monitoring_gui.Services.Interfaces
         {
             /* ! decoding incoming data into a byte array */
 
-            var bytes = wordBanList.GetWordBanList().Select(i => Encoding.Default.GetBytes($"{i}\n")).ToArray();
+            var bytes = wordBanList.GetWordBanList().Select(i => Encoding.Default.GetBytes($"{i}\n")).ToArray(); 
 
             switch (dataStorageArea)
             {
@@ -55,11 +59,10 @@ namespace user_monitoring_gui.Services.Interfaces
                 case DataStorageArea.SERVER:
                     foreach (var item in bytes)
                     {
-                        this._serverReqwest.SendData(item);
+                        this._serverRequest.SendData(item);
                     }
                     return true;
             }
-
             return false;
         }
 
@@ -70,17 +73,16 @@ namespace user_monitoring_gui.Services.Interfaces
         */
         public bool Load(WordBanList wordBanList, DataStorageArea dataStorageArea)
         {
-            
-
+<<<<<<< HEAD
             switch (dataStorageArea)
             {
-                case DataStorageArea.FILE:                  
+                case DataStorageArea.FILE:
 
                     FileInfo file = new FileInfo("WordBanList.txt");
                     /*
                      * - file exist verification
                      */
-                    if (file.Exists )
+                    if (file.Exists)
                     {
                         List<string> lines = File.ReadAllLines("WordBanList.txt").ToList();
 
@@ -95,15 +97,18 @@ namespace user_monitoring_gui.Services.Interfaces
                         return false;
                     }
 
-                case DataStorageArea.SERVER:                   
+                case DataStorageArea.SERVER:
 
-                    var result = this._serverReqwest.LoadData(wordBanList.GetType()).GetData();
+                    var result = this._serverRequest.LoadData(wordBanList.GetType()).GetData();
 
                     wordBanList.AddWord(Encoding.Default.GetString(result));
 
                     return true;
             }
+=======
+>>>>>>> parent of b2b2b5c (Implemented the LoadProgramBanList method. Closed #48)
             return false;
         }
+
     }
 }

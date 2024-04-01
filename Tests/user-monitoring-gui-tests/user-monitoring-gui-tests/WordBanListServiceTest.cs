@@ -1,8 +1,7 @@
-﻿using Microsoft.VisualStudio.TestPlatform.Utilities;
-using user_monitoring_gui.Models;
+﻿using user_monitoring_gui.Models;
 using user_monitoring_gui.Services;
 using user_monitoring_gui.Services.Interfaces;
-using Xunit.Abstractions;
+
 
 namespace user_monitoring_gui_tests
 {
@@ -11,15 +10,15 @@ namespace user_monitoring_gui_tests
     */
     public class WordBanListServiceTest
     {
-        private static readonly IServerRequest request; // Itialization of the required parameter
+        private static readonly IServerRequest request;   /// Itialization of the required parameter
 
-        private WordBanList wordBanList = new WordBanList(); // Implementation of the class under test
+        private WordBanList wordBanList = new WordBanList();  /// Implementation of the class under test
 
-        private WordBanListService wordBanListService = new WordBanListService(request); // Implementation of the class under test
+        private WordBanListService wordBanListService = new WordBanListService(request);  /// Implementation of the class under test
 
-        const string FILE_NAME = "WordBanList.txt"; // Initialization of the file name constant variable
+        const string FILE_NAME = "WordBanList.txt";  /// Initialization of the file name constant variable
 
-        int numberTestEntries = 3;  // Number of test records in the file
+        int numberTestEntries = 3;  /// Number of test records in the file
 
         /*!
          * \ brief SaveFileTest method to check if the transferred data is saved 
@@ -56,7 +55,7 @@ namespace user_monitoring_gui_tests
         [Fact]
         public void LoadFileTest()
         {
-            FileInfo file = new FileInfo(FILE_NAME); 
+            FileInfo file = new FileInfo(FILE_NAME);
 
             if (file.Exists)
             {
