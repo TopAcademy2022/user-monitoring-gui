@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 using user_monitoring_gui.Models;
 using user_monitoring_gui.Services.Interfaces;
 
@@ -6,15 +6,41 @@ namespace user_monitoring_gui.Services
 {
     public class ProgramBanListService : IProgramBanListService
     {
-        private IServerRequest _serverReqwest;
+        private IServerRequest _serverRequest;
 
-        public ProgramBanListService (IServerRequest serverReqwest)
+        public ProgramBanListService (IServerRequest serverRequest)
         {
-            this._serverReqwest = serverReqwest;
+            this._serverRequest = serverRequest;
         }
 
-        public bool Save (ProgramBanList programBanList)
+        public bool Save(ProgramBanList programBanList, DataStorageArea dataStorageArea)
         {
+            /* ! decoding incoming data into a byte array */
+
+            var bytes = programBanList.GetProgramBanList().Select(i => Encoding.Default.GetBytes($"{i}\n")).ToArray();
+
+            switch (dataStorageArea)
+            {
+                case DataStorageArea.FILE:
+                    using (FileStream fstream = new FileStream("ProgramBanList.txt", FileMode.Append))
+                    {
+                        foreach (var item in bytes)
+                        {
+                            fstream.Write(item, 0, item.Length);
+                        }
+                    }
+                    
+                    return true;
+
+                case DataStorageArea.SERVER:
+                    foreach (var item in bytes)
+                    {
+                        this._serverRequest.SendData(item);
+                    }
+                    
+                    return true;
+            }
+            
             return false;
         }
 
@@ -41,7 +67,7 @@ namespace user_monitoring_gui.Services
 
             case DataStorageArea.SERVER:
 
-                var rezult = this._serverReqwest.LoadData(programBanList.GetType()).GetData();
+                var rezult = this._serverRequest.LoadData(programBanList.GetType()).GetData();
 
                 programBanList.AddProgram(Encoding.Default.GetString(rezult));
 
