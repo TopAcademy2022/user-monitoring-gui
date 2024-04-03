@@ -10,10 +10,43 @@ namespace user_monitoring_gui_tests
      */
     public class ProgramBanListServiceTest
     {
-        private static IServerRequest _serverReqwest;
+        private static IServerRequest _serverRequest;
 
-        ProgramBanListService programBanListService = new ProgramBanListService( _serverReqwest );
+        ProgramBanListService programBanListService = new ProgramBanListService(_serverRequest);
+
         ProgramBanList programBanList = new ProgramBanList();
+
+        int numberTestEntries = 3;  /// Number of test records in the file
+
+        /*!
+         * \ brief SaveTest method to check if the transferred data is saved 
+         */
+
+        [Fact]
+        public void SaveTest()
+        {
+            /*
+             * - file exist verification
+             */
+            FileInfo file = new FileInfo("ProgramBanList.txt");
+
+            if (file.Exists)
+            {
+                file.Delete();
+            }
+
+            for (int i = 0; i < numberTestEntries; i++)
+            {
+                programBanList.AddProgram($"Test{i}");
+            }
+
+            programBanListService.Save(programBanList, DataStorageArea.FILE);
+
+            var result = File.ReadLines("ProgramBanList.txt");
+
+            Assert.True(result.Count() == numberTestEntries);
+
+        }
 
         /*!
          *  \test - testing method to check if data is extracted from a file
