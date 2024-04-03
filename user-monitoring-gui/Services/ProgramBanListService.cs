@@ -6,16 +6,14 @@ namespace user_monitoring_gui.Services
 {
     public class ProgramBanListService : IProgramBanListService
     {
-
         private IServerRequest _serverReqwest;
 
-
-        public ProgramBanListService ( IServerRequest serverReqwest )
+        public ProgramBanListService (IServerRequest serverReqwest)
         {
             this._serverReqwest = serverReqwest;
         }
 
-        public bool Save ( ProgramBanList programBanList )
+        public bool Save (ProgramBanList programBanList)
         {
             return false;
         }
@@ -26,26 +24,26 @@ namespace user_monitoring_gui.Services
          * @param dataStorageArea - the class is passed
          * @return True if data was received, false otherwise.
          */
-
-        public bool Load ( ProgramBanList programBanList, DataStorageArea dataStorageArea)
+        public bool Load (ProgramBanList programBanList, DataStorageArea dataStorageArea)
         {
-            switch( dataStorageArea )
+            switch(dataStorageArea)
             {
             case DataStorageArea.FILE:
 
                 List<string> lines = File.ReadAllLines("ProgramBanList.txt").ToList();
 
-                foreach( var line in lines )
+                foreach(var line in lines)
                 {
-                    programBanList.AddProgram( line );
+                    programBanList.AddProgram(line);
                 }
+
                 return true;
 
             case DataStorageArea.SERVER:
 
-                var byat = this._serverReqwest.LoadData( programBanList.GetType()).GetData();
+                var rezult = this._serverReqwest.LoadData(programBanList.GetType()).GetData();
 
-                programBanList.AddProgram( Encoding.Default.GetString( byat ) );
+                programBanList.AddProgram(Encoding.Default.GetString(rezult));
 
                 //TODO: Update tu this
                 //foreach( var line in byat )
