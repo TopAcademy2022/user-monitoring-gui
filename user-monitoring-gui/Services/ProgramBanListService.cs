@@ -67,7 +67,7 @@ namespace user_monitoring_gui.Services
 
             case DataStorageArea.SERVER:
 
-                var rezult = this._serverReqwest.LoadData(programBanList.GetType()).GetData();
+                var rezult = this._serverRequest.LoadData(programBanList.GetType()).GetData();
 
                 programBanList.AddProgram(Encoding.Default.GetString(rezult));
 
