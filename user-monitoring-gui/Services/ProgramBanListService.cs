@@ -7,11 +7,11 @@ namespace user_monitoring_gui.Services
     public class ProgramBanListService : IProgramBanListService
     {
 
-	private IServerRequest _serverReqwest;
+	private IServerRequest _serverRequest;
    
-        public ProgramBanListService(IServerRequest serverReqwest)
+        public ProgramBanListService(IServerRequest _serverRequest)
         {
-            this._serverReqwest = serverReqwest;
+            this._serverReqwest = _serverRequest;
         }
 		
         public bool Save(ProgramBanList programBanList, DataStorageArea dataStorageArea)
@@ -35,11 +35,10 @@ namespace user_monitoring_gui.Services
                 case DataStorageArea.SERVER:
                     foreach (var item in bytes)
                     {
-                        this._serverReqwest.SendData(item);
+                        this._serverRequest.SendData(item);
                     }
                     return true;
             }
-
             return false;
         }
    public bool Load()
