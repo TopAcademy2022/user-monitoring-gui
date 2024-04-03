@@ -11,7 +11,7 @@ namespace user_monitoring_gui.Services
    
         public ProgramBanListService(IServerRequest _serverRequest)
         {
-            this._serverReqwest = _serverRequest;
+            this._serverRequest = _serverRequest;
         }
 		
         public bool Save(ProgramBanList programBanList, DataStorageArea dataStorageArea)
