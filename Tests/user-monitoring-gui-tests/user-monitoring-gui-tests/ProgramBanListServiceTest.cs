@@ -12,9 +12,9 @@ namespace user_monitoring_gui_tests
     {
         private static IServerRequest _serverRequest;
 
-        ProgramBanListService programBanListService = new ProgramBanListService(_serverRequest);
+        private ProgramBanListService programBanListService = new ProgramBanListService(_serverRequest);
 
-        ProgramBanList programBanList = new ProgramBanList();
+        private ProgramBanList programBanList = new ProgramBanList();
 
         int numberTestEntries = 3;  /// Number of test records in the file
 
@@ -25,15 +25,7 @@ namespace user_monitoring_gui_tests
         [Fact]
         public void SaveTest()
         {
-            /*
-             * - file exist verification
-             */
             FileInfo file = new FileInfo("ProgramBanList.txt");
-
-            if (file.Exists)
-            {
-                file.Delete();
-            }
 
             for (int i = 0; i < numberTestEntries; i++)
             {
@@ -42,10 +34,9 @@ namespace user_monitoring_gui_tests
 
             programBanListService.Save(programBanList, DataStorageArea.FILE);
 
-            var result = File.ReadLines("ProgramBanList.txt");
+            Assert.True(File.ReadLines("ProgramBanList.txt").Count() == numberTestEntries);
 
-            Assert.True(result.Count() == numberTestEntries);
-
+            File.Delete("ProgramBanList.txt");
         }
 
         /*!
