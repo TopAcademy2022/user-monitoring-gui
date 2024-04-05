@@ -5,11 +5,13 @@ namespace user_monitoring.Services
 {
     public class ConsoleUserInterface : IUserInterface
     {
+        private ProgramBanList _programbanlist; 
         private WordBanList _wordBanList;
         private Setting _setting;
 
-        public ConsoleUserInterface(Setting setting, WordBanList wordBanList)
+        public ConsoleUserInterface(Setting setting, WordBanList wordBanList, ProgramBanList programBanList)
         {
+            this._programbanlist = programBanList;
             this._setting = setting;
             this._wordBanList = wordBanList;
         }
@@ -211,8 +213,91 @@ namespace user_monitoring.Services
 
         public void PrintMenuProgramBanList()
         {
+            const int NUMBER_EXIT_SUBMENU_ELEMENT = 4;
+            int numberSubMenuElement = 0;
 
+            while (numberSubMenuElement != NUMBER_EXIT_SUBMENU_ELEMENT)
+            {
+                Console.Clear();
+                Console.WriteLine("***********************************************");
+                Console.WriteLine("***********************************************");
+                Console.WriteLine("\t====== Загруска списка запрещённых программ ======\n");
+                Console.WriteLine("1. Добавить программу в список");
+                Console.WriteLine("2. Удалить программу из списка");
+                Console.WriteLine("3. Показать список запрещённых программ");
+                Console.WriteLine("4. Вернуться в предыдущее меню");
+                Console.WriteLine("***********************************************");
+
+                Console.Write("Выберете пункт подменю: ");
+                ConsoleKeyInfo userInputSymbol;
+
+                do
+                {
+                    userInputSymbol = Console.ReadKey(true);
+                }
+                while (userInputSymbol.Key < ConsoleKey.D0 || userInputSymbol.Key > ConsoleKey.D4);
+
+                numberSubMenuElement = Convert.ToInt32(userInputSymbol.KeyChar.ToString());
+
+
+                switch (numberSubMenuElement)
+                {
+                    case 1:
+                        AddProgramToBanList();
+                        break;
+
+                    case 2:
+                        RemoveProgramFromBanList();
+                        break;
+
+                    case 3:
+                        ShowBanList();
+                        break;
+                }
+            }
         }
+
+        private void AddProgramToBanList()
+        {
+            Console.WriteLine("Введите название программы для добавления в список");
+            string programName = Console.ReadLine();
+            _programbanlist.RemoveProgramFromBanList(programName);
+            Console.WriteLine($"Программа '{programName}' добавлена в список запрещённых");
+            Console.WriteLine("\nНажмите клавишу чтобы продолжить");
+            Console.ReadKey(true);
+        }
+
+        private void RemoveProgramFromBanList()
+        {
+            Console.WriteLine("Введите название программы для удаления из списка");
+            string programName = Console.ReadLine();
+            _programbanlist.AddProgramToBanList( programName);
+            Console.WriteLine($"Программа '{programName}' удаленна из списка запрещённых программ");
+            Console.WriteLine("\nНажмите клавишу чтобы продолжить");
+            Console.ReadKey(true);
+        }
+
+        private void ShowBanList()
+        {
+            Console.WriteLine("Список запрещённых программ:");
+            List<string> banList = _programbanlist.GetProgramBanList;
+            if (banList.Count == 0)
+            {
+                Console.WriteLine("\nСписок запрещенных программ пуст.\n");
+            }
+            else
+            {
+                Console.WriteLine("\nСписок запрещенных программ:");
+
+                foreach (string Program in banList)
+                {
+                    Console.WriteLine(Program);
+                }
+                Console.WriteLine("\nНажмите клавишу чтобы продолжить");
+                Console.ReadKey(true);
+            }
+        }
+    
 
         public void RunProgram()
         {
