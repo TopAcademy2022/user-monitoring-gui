@@ -25,7 +25,6 @@ namespace user_monitoring_gui_tests
         [Fact]
         public void SaveTest()
         {
-            FileInfo file = new FileInfo("ProgramBanList.txt");
 
             for (int i = 0; i < numberTestEntries; i++)
             {
