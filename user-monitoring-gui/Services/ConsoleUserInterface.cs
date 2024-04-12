@@ -261,7 +261,7 @@ namespace user_monitoring.Services
         {
             Console.WriteLine("Введите название программы для добавления в список");
             string programName = Console.ReadLine();
-            _programbanlist.RemoveProgramFromBanList(programName);
+            _programbanlist.AddProgram(programName);
             Console.WriteLine($"Программа '{programName}' добавлена в список запрещённых");
             Console.WriteLine("\nНажмите клавишу чтобы продолжить");
             Console.ReadKey(true);
@@ -271,7 +271,7 @@ namespace user_monitoring.Services
         {
             Console.WriteLine("Введите название программы для удаления из списка");
             string programName = Console.ReadLine();
-            _programbanlist.AddProgramToBanList( programName);
+            _programbanlist.RemoveProgram(programName);
             Console.WriteLine($"Программа '{programName}' удаленна из списка запрещённых программ");
             Console.WriteLine("\nНажмите клавишу чтобы продолжить");
             Console.ReadKey(true);
@@ -280,7 +280,7 @@ namespace user_monitoring.Services
         private void ShowBanList()
         {
             Console.WriteLine("Список запрещённых программ:");
-            List<string> banList = _programbanlist.GetProgramBanList;
+            List<string> banList = _programbanlist.GetProgramBanList();
             if (banList.Count == 0)
             {
                 Console.WriteLine("\nСписок запрещенных программ пуст.\n");
