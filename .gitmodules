@@ -1,3 +1,4 @@
 [submodule "core/user-monitoring-core"]
 	path = core/user-monitoring-core
 	url = https://github.com/TopAcademy2022/user-monitoring-core.git
+	branch = main
