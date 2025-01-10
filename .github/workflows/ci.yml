@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        build_type: [Release]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Run Linux build
+      if: runner.os == 'Linux'
+      run: |
+        bash build-core.sh
+
+    - name: Run Windows build
+      if: runner.os == 'Windows'
+      run: |
+        ./build-core.bat
