@@ -28,6 +28,10 @@ if "%EXPORT_DIR_STRATEGY%"=="Create" (
 
 REM See dirs GithubAction
 dir
+cd ./core
+dir
+cd ./user-monitoring-core
+dir
 
 if exist "%LIB_EXPORT_DIR%" (
     if exist "%CORE_BUILD_DIR%" (
