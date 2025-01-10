@@ -39,6 +39,8 @@ if [ -d "$LIB_EXPORT_DIR" ]; then
     if [ -d "$CORE_BUILD_DIR" ]; then
         cd "$CORE_BUILD_DIR" || exit
 
+        # Add rule for run script
+        chmod +x ./"$CORE_BUILD_SCRIPT_NAME"
         # Call build script (default Release version)
         ./"$CORE_BUILD_SCRIPT_NAME" "none"
 
