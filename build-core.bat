@@ -13,7 +13,7 @@ set "BUILD_TYPE=Release"
 set "DOTNET_VERSION=net6.0"
 
 :: Remarks Folder name with core library
-set "CORE_BUILD_DIR=./core/user-monitoring-core/build"
+set "CORE_BUILD_DIR=./core/user-monitoring-core/build/"
 :: Remarks Library name
 set "CORE_LIB_NAME=user-monitoring-core.dll"
 :: Remarks Core library build script name
@@ -27,10 +27,10 @@ if "%EXPORT_DIR_STRATEGY%"=="Create" (
 )
 
 REM See dirs GithubAction
-dir
 cd ./core
-dir
 cd ./user-monitoring-core
+dir
+cd ./build
 dir
 
 if exist "%LIB_EXPORT_DIR%" (
