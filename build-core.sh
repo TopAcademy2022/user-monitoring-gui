@@ -25,7 +25,7 @@ CORE_BUILD_DIR="./core/user-monitoring-core/build"
 CORE_LIB_NAME="user-monitoring-core.so"
 
 # Core library build script name
-CORE_BUILD_SCRIPT_NAME="build-windows.sh"
+CORE_BUILD_SCRIPT_NAME="build-linux.sh"
 
 # Library export directory
 LIB_EXPORT_DIR="./user-monitoring-gui/bin/${BUILD_TYPE}/${DOTNET_VERSION}/"
