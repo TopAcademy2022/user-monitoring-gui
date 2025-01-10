@@ -39,4 +39,4 @@ jobs:
     - name: Run Windows build
       if: runner.os == 'Windows'
       run: |
-        call build-core.bat
+        ./build-core.bat

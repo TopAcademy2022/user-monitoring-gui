@@ -22,7 +22,7 @@ DOTNET_VERSION="net6.0"
 CORE_BUILD_DIR="./core/user-monitoring-core/build"
 
 # Library name
-CORE_LIB_NAME="user-monitoring-core.dll"
+CORE_LIB_NAME="user-monitoring-core.so"
 
 # Core library build script name
 CORE_BUILD_SCRIPT_NAME="build-windows.sh"
