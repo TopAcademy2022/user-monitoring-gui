@@ -26,11 +26,9 @@ if "%EXPORT_DIR_STRATEGY%"=="Create" (
     mkdir "%LIB_EXPORT_DIR%" /p
 )
 
+cd %CORE_BUILD_DIR%
 REM See dirs GithubAction
-cd ./core
-cd ./user-monitoring-core
-dir
-cd ./build
+cd ./core/user-monitoring-core/build
 dir
 
 if exist "%LIB_EXPORT_DIR%" (
