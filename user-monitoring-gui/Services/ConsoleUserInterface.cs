@@ -1,14 +1,23 @@
-using user_monitoring_gui.Services.Interfaces;
-using user_monitoring_gui.Models;
-
 namespace user_monitoring.Services
 {
+	/*! 
+	 * @class ConsoleUserInterface 
+	 * @brief Class for managing the console user interface.
+	 * This class provides methods for displaying menus and handling user 
+	 * inputs related to application settings and monitoring functionalities.
+	 */
 	public class ConsoleUserInterface : IUserInterface
 	{
 		private WordBanList _wordBanList;
 		private Setting _setting;
 		private ProgramBanList _programBanList;
 
+		/*! 
+	   * @brief Constructor for ConsoleUserInterface
+	   * @param setting The settings for the application.
+	   * @param wordBanList The list of banned words for monitoring.
+	   * @param programBanList The list of banned programs for monitoring.
+	   */
 		public ConsoleUserInterface(Setting setting, WordBanList wordBanList, ProgramBanList programBanList)
 		{
 			this._setting = setting;
@@ -16,6 +25,12 @@ namespace user_monitoring.Services
 			this._programBanList = programBanList;
 		}
 
+		/*! 
+		 * @brief Displays the main menu to the user.
+		 * This method clears the console and presents a menu with options for 
+		 * configuring settings, editing banned lists, running the program, 
+		 * displaying statistics, or exiting.
+		 */
 		public void PrintMenu()
 		{
 
@@ -71,6 +86,11 @@ namespace user_monitoring.Services
 			}
 		}
 
+		/*! 
+		 * @brief Displays the settings menu.
+		 * This method shows the current settings and allows the user to 
+		 * toggle various options related to monitoring and analysis.
+		 */
 		public void PrintMenuSettings()
 		{
 			int numberMenuElement = 0;
@@ -132,7 +152,11 @@ namespace user_monitoring.Services
 
 		public void PrintMenuWordBanList()
 		{
-
+			/*! 
+			 * @brief Displays the menu for managing the banned words list.
+			 * This method presents the user with options to add or remove words from 
+			 * the banned words list and return to the main menu.
+			 */
 			const uint NUMBER_EXIT_MENU_ELEMENT = 4;
 			int numberMenuElement = 0;
 
@@ -174,6 +198,11 @@ namespace user_monitoring.Services
 			}
 		}
 
+		/*! 
+		 * @brief Prompts the user to add a word to the banned words list.
+		 * This method requests input from the user for a word to be added 
+		 * to the banned words list.
+		 */
 		public void PrintAddWordToBanList()
 		{
 			Console.WriteLine("Введите слово, которое нужно добавить в список запрещенных:");
@@ -182,6 +211,11 @@ namespace user_monitoring.Services
 			_wordBanList.AddWord(word);
 		}
 
+		/*! 
+		 * @brief Prompts the user to remove a word from the banned words list. 
+		 * This method requests input from the user for a word to be removed 
+		 * from the banned words list.
+		 */
 		public void PrintRemoveWordFromBanList()
 		{
 			Console.WriteLine("Введите слово, которое нужно удалить из списка запрещенных:");
@@ -211,8 +245,18 @@ namespace user_monitoring.Services
 			Console.ReadKey(true);
 		}
 
+		/*! 
+		 * @brief Displays all programs in the banned program list. 
+		 * This method retrieves and prints the list of banned programs to the console. 
+		 * If the list is empty, it informs the user accordingly.
+		 */
 		public void PrintMenuProgramBanList()
 		{
+			/*! 
+			 * @brief Displays the menu for managing the banned program list.
+			 * This method presents the user with options to add, remove, or display 
+			 * programs in the banned program list and return to the main menu.
+			 */
 			const uint NUMBER_EXIT_MENU_ELEMENT = 5;
 			int numberMenuElement = 0;
 
@@ -261,6 +305,11 @@ namespace user_monitoring.Services
 			}
 		}
 
+		/*! 
+		 * @brief Prompts the user to add a program to the banned program list.
+		 * This method requests input from the user for a program name to be added 
+		 * to the banned program list.
+		 */
 		public void AddProgramToBanList()
 		{
 			Console.WriteLine("Введите назавание программы, которое нужно добавить в список запрещенных:");
@@ -269,6 +318,11 @@ namespace user_monitoring.Services
 			_programBanList.AddProgram(program);
 		}
 
+		/*! 
+		 * @brief Prompts the user to remove a program from the banned program list.
+		 * This method requests input from the user for a program name to be removed 
+		 * from the banned program list.
+		 */
 		public void RemoveProgramFromBanList()
 		{
 			Console.WriteLine("Введите название программы, которое нужно удалить из списка запрещенных:");
@@ -277,6 +331,13 @@ namespace user_monitoring.Services
 			_programBanList.RemoveProgram(program);
 		}
 
+		/*! 
+		 * @brief Displays all programs from the banned program list.
+		 * This method retrieves the list of programs that are banned 
+		 * and prints each program to the console with an indexed format.
+		 * After displaying the list, it prompts the user to press any 
+		 * key to continue.
+		 */
 		public void PrintAllProgramsFromBanList()
 		{
 			List<string> allPrograms = _programBanList.GetProgramBanList();
