@@ -25,13 +25,13 @@ namespace user_monitoring.Services
 			this._programBanList = programBanList;
 		}
 
-		/*! 
+        /*! 
 		 * @brief Displays the main menu to the user.
-		 * This method clears the console and presents a menu with options for 
+		 * @details This method clears the console and presents a menu with options for 
 		 * configuring settings, editing banned lists, running the program, 
 		 * displaying statistics, or exiting.
 		 */
-		public void PrintMenu()
+        public void PrintMenu()
 		{
 
 			const uint NUMBER_EXIT_MENU_ELEMENT = 6;
@@ -331,14 +331,14 @@ namespace user_monitoring.Services
 			_programBanList.RemoveProgram(program);
 		}
 
-		/*! 
+        /*! 
 		 * @brief Displays all programs from the banned program list.
-		 * This method retrieves the list of programs that are banned 
+		 * @details This method retrieves the list of programs that are banned 
 		 * and prints each program to the console with an indexed format.
 		 * After displaying the list, it prompts the user to press any 
 		 * key to continue.
 		 */
-		public void PrintAllProgramsFromBanList()
+        public void PrintAllProgramsFromBanList()
 		{
 			List<string> allPrograms = _programBanList.GetProgramBanList();
 			uint countPrograms = 0;
