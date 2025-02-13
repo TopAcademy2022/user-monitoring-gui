@@ -1,3 +1,6 @@
+using user_monitoring_gui.Services.Interfaces;
+using user_monitoring_gui.Models;
+
 namespace user_monitoring.Services
 {
 	/*! 
