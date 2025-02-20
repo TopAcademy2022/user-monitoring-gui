@@ -4,10 +4,10 @@
     public interface IRunProgramReader
     {
 
-        /*! 
-         * @brief Interface for managing and checking running programs.
-         * @param[in] The name of the program to check.
-         * @return True if the program is running; otherwise, false.
+       /*! 
+       * @brief Interface for managing and checking running programs.
+       * @param[in] The name of the program to check.
+       * @return True if the program is running; otherwise, false.
        */
         public bool CheckRunProgram(string programName);
 
